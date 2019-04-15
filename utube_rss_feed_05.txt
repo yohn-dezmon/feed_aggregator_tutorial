@@ -1,0 +1,17 @@
+https://www.youtube.com/watch?v=XOee5QmSxj4&list=PLmxT2pVYo5LBcv5nYKTIn-fblphtD_OJO&index=6
+a route is a mapping of URL patterns to request handlers
+
+we are in __init__.py of routes !
+
+# redirect is important after a form
+# redirect is also important for marking an article as read... when they click an article
+# they would be redirected to a URL that marks the article as read and then to
+# the article
+
+# request is a global that stores some state about the request
+# for example it stores the form values ...
+from flask import redirect, request
+
+
+you have to make sure that the routes are accessed by the run.py file!
+you do this by importing the routes module(folder).

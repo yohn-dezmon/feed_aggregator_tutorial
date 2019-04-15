@@ -1,0 +1,110 @@
+https://www.youtube.com/watch?v=Gv2Ps7Ltu9Q&t=39s
+Installing MySQL...
+
+He's doing this in Ubuntu... So I will to ! uhh fuck.
+
+NVM I'm going to download MariaDB with Homebrew...
+but first I need to install HomeBrew...
+
+https://www.datacamp.com/community/tutorials/homebrew-install-use
+Homebrew is a 'package manager'
+a package manager is a tool which automates the process of installing, updating, and removing
+packages.
+
+pip is also a package manager.
+conda also has package manager functionality (but does other things too).
+
+
+To install something with homebrew:
+brew install something
+
+to unistall a package
+brew rm something
+
+Installing MariaDB on a mac:
+https://www.javatpoint.com/how-to-install-mariadb-on-mac
+
+* I didn't install MariaDB or HomeBrew into 'tentagg' virtual environment...
+
+$ brew install mariadb
+$ brew services start mariadb
+
+# what it outputs after you run that ^
+
+MySQL is configured to only allow connections from localhost by default
+
+To connect:
+    mysql -uroot
+
+To have launchd start mariadb now and restart at login:
+  brew services start mariadb
+Or, if you don't want/need a background service you can just run:
+
+  mysql.server start
+
+  ##
+Davy wrote...
+# he said this is 'configuration'...step...
+
+$ sudo mysql_secure_installation
+
+
+* why use mysql_secure_installation???
+-It is available on Unix systems (which mac OS is ..)
+You can set a password for root accounts.
+You can remove root accounts that are accessible from outside the local host.
+You can remove anonymous-user accounts.
+You can remove the test database, which by default can be accessed by anonymous users.
+
+I'm getting the error 2002 (HY000) which I don't understand why... So I'm going to skip this fucking step...
+resolving this error:
+https://stackoverflow.com/questions/15016376/cant-connect-to-local-mysql-server-through-socket-homebrew/18090173
+
+Resolving error:
+https://askubuntu.com/questions/528998/error-1045-28000-on-mysql-server-installation
+uh.... this worked! $ mysql -u root
+
+--------
+Post Error Davy:
+
+$ sudo mysql_secure_installation
+
+# the next step enables the password! :D
+$ sudo mysql -u root -p
+
+# use the mysql table! :D
+MariaDB [(none)]> use mysql;
+
+
+MariaDB [mysql]> update user set plugin='mysql_native_password' where user='root';
+
+# what does this do?
+MariaDB [mysql]> flush privileges;
+
+MariaDB [mysql]> quit;
+
+
+------
+
+SQLALCHEMY is an object relational mapper!
+It allows us to write python code that represents our model and interaction with the model
+w/o haveing to write raw SQL code.
+
+we could always use Postgres if we didn't like MySQL..
+
+
+we're going to use flask-SQLalchemy
+
+WE just installed:
+flask
+flask_sqlalchemy
+sqlalchemy
+
+with pip3 ...
+ I MAY HAVE NEEDED TO BE IN SUDO WHEN DOING THIS... FUCK.
+pip install PyMySQL
+----
+
+$ mysql -u root -p
+MariaDB [(none)]> create database feedreader;
+MariaDB [(none)]> exit;

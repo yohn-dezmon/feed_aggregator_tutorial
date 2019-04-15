@@ -1,0 +1,131 @@
+The tasks in Cron are defined in a crontab which is a text file containing the commands
+to be executed.
+
+Python presents us with the crontab module to manage scheduled jobs via Cron
+
+Minute Hour Day Month Day_of_the_Week
+
+minute can be (0-59)
+hour (0-23)
+day (1-31)
+month(1-12)
+day of week (0-6)
+sunday is either 0 or 7 (on some systems)
+
+
+Comma >>> to separate multiple values (? like if you wanted to run something on the first and 15th)
+Hyphen >>> to indicate a range of values
+Asterisk >>> to indicate all possible values
+Forward slash >>> To indicate every
+
+* * * * * means: every minute of every hour of every day of the month for every month
+for every day of the week.
+
+
+0 16 1,10,22 * * tells cron to run a task at 4 PM (which is the 16th hour) on the 1st,
+10th and 22nd day of every month.
+
+
+-------------
+https://www.youtube.com/watch?v=QZJ1drMQz1A
+
+See current jobs:
+$ crontab -l
+
+# crontab defaults to the VIM editor, but we are using ATOM... so you have to change that
+
+$ export EDITOR=/path/to/atom
+
+So I wrote this (this worked but it's not what he's doing in the tutorial so I'm lost now lol)
+
+$ export EDITOR=atom
+
+This allows you to edit your crontab shit (WAIT, i think VIM is just that weird thing in terminal
+with all of the ~
+$ crontab -e
+
+back to default
+
+$ export EDITOR=vi
+
+
+######
+notes on vi
+
+:q (quits the editor)
+:q! (quits and saves nothing)
+:wq (saves and quits)
+:w "filename" (saves document as filename)
+:set all (shows environment settings)
+
+press i puts you in insert mode
+
+#######
+
+
+https://www.youtube.com/watch?v=QZJ1drMQz1A
+
+See current jobs:
+$ crontab -l
+
+# crontab defaults to the VIM editor, but we are using ATOM... so you have to change that
+
+$ export EDITOR=/path/to/atom
+
+So I wrote this (this worked but it's not what he's doing in the tutorial so I'm lost now lol)
+
+$ export EDITOR=atom
+
+This allows you to edit your crontab shit (WAIT, i think VIM is just that weird thing in terminal
+with all of the ~
+$ crontab -e
+
+back to default
+
+$ export EDITOR=vi
+
+
+######
+notes on vi
+
+:q (quits the editor)
+:q! (quits and saves nothing)
+:wq (saves and quits)
+:w "filename" (saves document as filename)
+:set all (shows environment settings)
+
+press i puts you in insert mode
+
+#######
+
+* * * * * echo 'Hello' >> /tmp/test.txt
+
+this creates a text file with 'Hello' in the temporary files folder (tmp)
+
+to save in vim >>> ESC > :wq
+
+$ crontab -l
+^ see the job
+
+$ cat /tmp/test.txt
+^ see the result of the job in the terminal
+
+30 * * * *  [this would get run on the 30 minute of each passing hour....
+so if you started the command at 11:40, it would run next at 12:30]
+
+0----------0
+
+https://www.youtube.com/watch?v=p3PcNuB20v4
+
+sentedex
+
+He uses this to drop the cached memory on his website...
+[RAM]
+
+15 * * * * sudo echo 1 > /proc/sys/vm/drop_caches
+15 * * * * sudo echo 2 > /proc/sys/vm/drop_caches
+15 * * * * sudo echo 3 > /proc/sys/vm/drop_caches
+
+1,15,30,59 * * * * sudo python /var/www/PythonProgrammning/PythonProgramming/user-data-tracking.py
+
+He says that you should use the entire file path!:D

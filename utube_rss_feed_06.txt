@@ -1,0 +1,16 @@
+https://www.youtube.com/watch?v=PCSgW3NrwQ8&list=PLmxT2pVYo5LBcv5nYKTIn-fblphtD_OJO&index=7
+Implementing Hanlders!
+
+back to __init__.py of routes
+
+abort (of flask) >>> returns HTTP error for the handler...
+when you are just making routes but havent coded them yet.
+
+
+{{ article.source.title }}
+
+^^ This is pretty awesome!
+since there is a source column in the article table
+and that column is the foreign key for the Source table
+you can treat it as if the columns in Source are just
+attributes of the article table !:D 

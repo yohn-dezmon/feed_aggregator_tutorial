@@ -1,0 +1,10 @@
+Making Templates!
+https://www.youtube.com/watch?v=D6pJlcmQ0OI&list=PLmxT2pVYo5LBcv5nYKTIn-fblphtD_OJO&index=8
+Only the index_get() and sources_get() of __init__.py
+need templates b/c the read_article_get just redirects the
+application to the article webpage.
+
+
+If you open up the / page, click on a link, return to the webpage
+then reload the page, it will cause the item to disappear because its value for
+read in the db has changed from no to yes.

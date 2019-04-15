@@ -1,0 +1,32 @@
+https://www.youtube.com/watch?v=CGyKXKouHVc&list=PLmxT2pVYo5LBcv5nYKTIn-fblphtD_OJO&index=5
+
+
+>>> from app import app
+>>> from models import source
+opens database
+
+>>> import feed
+>>> parsed = feed.parse('https://www.nasa.gov/rss/dyn/breaking_news.rss')
+>>> parsed
+prints out everything
+
+>>> dir(feed)
+shows methods available from feed.py
+
+['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__
+spec__', 'feedparser', 'get_articles', 'get_source', 'parse', 'ssl']
+
+>>> feed_source = feed.get_source(parsed)
+>>> feed_source
+{'link': 'http://www.nasa.gov/', 'title': 'NASA Breaking News', 'subtitle': 'A RSS news feed conta
+ining the latest NASA news articles and press releases.'}
+
+>>> feed_url = 'https://www.nasa.gov/rss/dyn/breaking_news.rss'
+>>> with app.app_context():
+We need to be within the 'context' of our app, this is part of the setup that Flask does.
+entering this will put you within it, where you can write more code
+
+make sure you actually indent  what you are about to write
+
+  s = source.Source.insert_from_feed(feed_url, feed_source)
+  print(s.id)

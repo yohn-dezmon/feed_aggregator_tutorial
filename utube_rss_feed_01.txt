@@ -1,0 +1,14 @@
+https://www.youtube.com/watch?v=BOfjtZXQmZg&list=PLmxT2pVYo5LBcv5nYKTIn-fblphtD_OJO&index=2
+
+This corresponds to feed.py
+
+we're not going to use the feedparser module directly,
+we're going to abstarct around the feed parser module.
+(encapsulate the feedparser)
+
+#
+Terminal inside Atom! :D
+https://atom.io/packages/platformio-ide-terminal
+
+# pretty print module 
+>>> from pprint import pprint

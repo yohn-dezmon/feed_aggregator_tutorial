@@ -1,0 +1,21 @@
+the sched module implements a generic event scheduler for running tasks
+at specific times.
+
+the scheduler class uses a 'time' function to determine what time it is
+and a 'delay' function to determine how long to wati.
+
+time.time() >>> should return the current time.
+
+
+----
+RUNNING EVENTS WITH A DELAY:
+
+Events can be scheduled to run after a delay, or at a specific time
+to schedule them with a delay, use the enter() method ! :D
+4 arguments
+* a number representing the delay
+* a priority value
+* the function to call
+* a tuple of arguments for the function (?)
+
+ 

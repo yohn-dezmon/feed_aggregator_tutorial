@@ -1,0 +1,7 @@
+He is going to use a 'background thread' to run the scheduling of the article insertion
+
+he said that if he was setting this up for a larger scale project, he would use celery as a
+taskqueue but it's not necessary for a small personal project like this.
+
+
+oh ok, he's going to be doing this in run.py which makes sense..

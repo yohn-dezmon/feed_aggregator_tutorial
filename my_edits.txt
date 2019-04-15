@@ -1,0 +1,19 @@
+Questions:
+
+1. How do I determine the time frame that this script will run?
+- I don't think we've gone over this in the tutorial yet...
+- We manually inserted the articles into the DB.
+
+2. Will the articles get replaced every time the script runs, or
+will my database keep getting larger with all of the articles I collect?
+
+3. How did the articles get in the DB again?
+
+4. How do I insert articles???? does the 1 source id mean that I'll only insert the article
+with that source_id???
+
+5. From the form online, how did I input the rss feed into the db?
+
+Notes:
+
+app.py connects to the DB.

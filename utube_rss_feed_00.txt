@@ -1,0 +1,15 @@
+https://www.youtube.com/watch?v=8rvvFNKHUss&list=PLmxT2pVYo5LBcv5nYKTIn-fblphtD_OJO
+
+RSS is an XML feed specification!
+feedparser > a module that interprets RSS for python!
+
+# what does curl do??
+$ curl https://www.nasa.gov/rss/dyn/breaking_news.rss
+
+$ pip3 install feedparser
+
+at some set interval, which is determined by the frequency at which
+the feeds are updated, we will pole the RSS feed.
+
+
+This corresopnds to nasa_feed.py

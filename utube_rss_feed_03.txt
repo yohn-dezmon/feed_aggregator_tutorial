@@ -1,0 +1,30 @@
+Data Models
+https://www.youtube.com/watch?v=C7o2KXMz7wk&list=PLmxT2pVYo5LBcv5nYKTIn-fblphtD_OJO&index=4
+
+go back to feed.py ! :D
+
+New files:
+app.py (flask)
+db.py (sqlalhemy)
+run.py
+models (folder)
+articles.py
+sources.py
+
+
+
+for the line...
+db_uri = 'mysql+pymysql://root:password@localhost/feedreader'
+you must change 'password' to the password you wrote for the db! :D 
+in app.py I may have to write PyMySQL instead .. :X.
+
+
+-----
+Creating the db and getting into it!
+
+$ python3 run.py
+$ ctrl-C to close the server
+$ mysql -u root -p ...... to get into the mariadb/mysql
+MariaDB [(none)]> use feedreader; ...... get into the feedreader db
+MariaDB [feedreader]> show tables; ....... show tables !
+MariaDB [feedreader]> show create table source; ...... see the SQL that was used to create the table! :D
