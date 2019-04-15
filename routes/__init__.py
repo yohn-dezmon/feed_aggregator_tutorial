@@ -10,11 +10,21 @@ import feed
 def index_get():
     # since Article is defined as  Article(db.Model): it has a .query attribute
     query = Article.query
-    query = query.filter(Article.unread == True)
-    query = query.order_by(Article.date_added.desc())
-    # when you redeine the query variableon each line, you are constructing a SQL select statement
-    articles = query.all()
-    return render_template('index.html', articles=articles)
+    def query_over(query, src_id):
+        query = query.filter(Article.unread == True, Article.source_id == src_id)
+        query = query.order_by(Article.date_added.desc())
+        return query.all()
+
+    first_articles = query_over(query, 1)
+    second_articles = query_over(query, 2)
+    third_articles = query_over(query, 3)
+
+    # when you redeine the query_1 variableon each line, you are constructing a SQL select statement
+
+
+    return render_template('index.html', first_articles=first_articles,
+                            second_articles=second_articles,
+                            third_articles=third_articles)
 
 # <article_id> is a path variable!
 # what ever you name that variable in the path, will be passed to the variable name in the function

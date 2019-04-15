@@ -5,3 +5,6 @@ taskqueue but it's not necessary for a small personal project like this.
 
 
 oh ok, he's going to be doing this in run.py which makes sense..
+
+Reverts to most recent commit! :D
+git reset --hard HEAD
