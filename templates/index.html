@@ -2,17 +2,21 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
     <title>Latest News</title>
   </head>
   <body>
       <main>
         <h1>Latest News</h1>
+        <div class="1st_2nd_articles">
+
+        <h1 class="box_head"> {{ first_articles[0].source.title }} </h1>
         <div class="first_articles">
         {% for article in first_articles %}
         <article>
-          <h1>
+          <h2>
             <a href="/read/{{ article.id }}">{{ article.title }}</a>
-          </h1>
+          </h2>
           <div class="source">
               From
               <a href="{{ article.source.link }}">
@@ -31,12 +35,13 @@
         </article>
         {% endfor %}
         </div>
+        <h1 class="box_head"> {{ second_articles[0].source.title }} </h1>
         <div class="second_articles">
         {% for article in second_articles %}
         <article>
-          <h1>
+          <h2>
             <a href="/read/{{ article.id }}">{{ article.title }}</a>
-          </h1>
+          </h2>
           <div class="source">
               From
               <a href="{{ article.source.link }}">
@@ -55,12 +60,16 @@
         </article>
         {% endfor %}
         </div>
+        </div>
+        <div class="3rd_4th_articles">
+
+        <h1 class="box_head"> {{ third_articles[0].source.title }} </h1>
         <div class="third_articles">
         {% for article in third_articles %}
         <article>
-          <h1>
+          <h2>
             <a href="/read/{{ article.id }}">{{ article.title }}</a>
-          </h1>
+          </h2>
           <div class="source">
               From
               <a href="{{ article.source.link }}">
@@ -79,6 +88,8 @@
         </article>
         {% endfor %}
         </div>
+        </div>
+
       </main>
 
   </body>
