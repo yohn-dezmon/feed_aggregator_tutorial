@@ -1,0 +1,280 @@
+https://docs.python.org/3/library/datetime.html
+
+>>> query = Article.query
+>>> import datetime
+>>> now = datetime.dateimte.utcnow()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'datetime' has no attribute 'dateimte'
+>>> now = datetime.datetime.utcnow()
+>>> print(now)
+2019-04-19 20:50:33.244087
+>>> now2 = datetime.datetime.utcnow()
+>>> print(now2)
+2019-04-19 20:50:50.204932
+>>> time_diff = datetime.datetime.timedelta(1)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: type object 'datetime.datetime' has no attribute 'timedelta'
+>>> time_diff = datetime.timedelta(1)
+>>> print(time_diff)
+1 day, 0:00:00
+>>> subtract = now - now2
+>>> print(subtract)
+-1 day, 23:59:43.039155
+>>> if subtract < time_diff:
+...     print("tru")
+... else:
+...     print("false")
+...
+tru
+
+-----
+
+
+Project
+taskqueue_tut
+__pycache__
+.git
+downloadedFiles
+downloaderApp
+models
+__pycache__
+__init__.py
+articles.py
+source.py
+routes
+__pycache__
+__init__.py
+static
+styles.css
+templates
+index.html
+sources.html
+app.py
+cron_ex.txt
+cron_py.py
+crontab_notes.txt
+db.py
+feed_jd.py
+feed.py
+inserting_articles.py
+inserting_sources.py
+my_edits.txt
+nasa_feed.py
+notes_on_datetime.txt
+notes_on_sched_module.txt
+notes_on_sqlalchemy.txt
+requirements.txt
+run.py
+sched_ex.py
+task_queue.txt
+utube_rss_feed_00.txt
+utube_rss_feed_01.txt
+utube_rss_feed_02.txt
+utube_rss_feed_03.txt
+utube_rss_feed_04.txt
+utube_rss_feed_05.py
+utube_rss_feed_05.txt
+utube_rss_feed_06.txt
+utube_rss_feed_07.txt
+utube_rss_feed_09.txt
+__init__.py
+run.py
+articles.py
+notes_on_datetime.txt
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+        stmt = Article.__table__.insert().prefix_with('IGNORE')
+        articles = []
+        # why are we appending a dictionary to a list?
+        for article in feed_articles:
+            articles.append({
+                'title': article['title'],
+                'body': article['summary'],
+                'link': article['link'],
+                'guid': article['id'],
+                'source_id': source_id,
+                'date_published': article['published'],
+            })
+            # the execute line will do a batch insert of all of hte articles in the list! :D
+        db.engine.execute(stmt, articles)
+
+    @classmethod
+    def delete_from_db(cls):
+        """ Delete articles that have been in the db for >= x days"""
+        now = datetime.datetime.utcnow()
+        time_diff = datetime.timedelta(1)
+
+        query = Article.query
+        for article in query.all():
+            date_added = article.date_added
+            # note to self: here now isn't a specific value, in the argument place or in the retun statement!
+            def subtract_date(now, date_added):
+                return now - date_added
+                # here now is referring to the variable defined previously! :D
+            d = article.delete().where(subtract_date(now, date_added) >= time_diff)
+
+        db.engine.execute(d)
+
+
+
+>>> for article in query.all():
+...     date_added = article.date_added
+...     def subtract_date(now, date_added):
+...             return now - date_added
+
+...     now = datetime.datetime.utcnow()
+...     subtract_date(now, date_added)
+...
+datetime.timedelta(10, 11446, 404858)
+
+
+---
+
+OK problem from above that I just realized!
+
+subtracting the date_addded from a datetime object results in
+datetime.timedelta(10, 11446, 404858)
+
+But I need to compare the days from that thing to the time_diff which prints as
+1 day, 0:00:00
+
+subtracting two datetime.datetime.utcnow()'s  resulted in
+-1 day, 23:59:43.039155
+
+how to extract the elements of the time delta?
+
+86,400 seconds in a day...
+
+so take the result of the subtraction formula, set it equal to a variable
+from that variable do
+variable.days()
+
+
+------
+
+>>> for article in query.all():
+...     date_added = article.date_added
+...     def subtract_date(now, date_added):
+...             timedelt = now - date_added
+
+...             return timedelt.days
+...     now = datetime.datetime.utcnow()
+...     now_days = now.days
+...     subtract_date(now_days, date_added)
+...
+Traceback (most recent call last):
+  File "<stdin>", line 7, in <module>
+AttributeError: 'datetime.datetime' object has no attribute 'days'
+
+
+
+---
+
+hmmm ok so you can obvisouly only use .days following timedelta()
+
+so how do I extract days from datetime.datetime?
+
+I think I need to use .day instead of .days
+
+---
+
+>>> for article in query.all():
+...     date_added = article.date_added
+...     def subtract_date(now, date_added):
+...             timedelt = now - date_added
+...             return timedelt.days
+...     now = datetime.datetime.utcnow()
+...     now_day = now.day
+...     subtract_date(now_day, date_added)
+...
+Traceback (most recent call last):
+  File "<stdin>", line 8, in <module>
+  File "<stdin>", line 4, in subtract_date
+TypeError: unsupported operand type(s) for -: 'int' and 'datetime.datetime'
+
+---
+
+alright so this means that now_day is 'int' and date_added is datetime.datetime
+I KNOW WHAT I NEED TO DO
+converte date_added into .day :D
+
+----
+
+>>> for article in query.all():
+...     date_added = article.date_added
+...     def subtract_date(now, date_added):
+...             return now - date_added
+...     now = datetime.datetime.utcnow()
+...     now_day = now.day
+...     date_added_day = date_added.day
+...
+...     subtract_date(now_day, date_added_day)
+
+----
+^^ This fucking worked! :D
+
+OK now the question is, can I compare the result of the subtract_date function
+to either a timedelta value or a timedelta().days value?
+
+---
+>>> now = datetime.datetime.utcnow()
+>>> now_day = now.day
+>>> print(type(now_day))
+<class 'int'>
+
+----
+
+>>> time_diff = delt_time_diff.days
+>>> print(time_diff)
+3
+
+>>> type(time_diff)
+<class 'int'>
+
+----
+
+ok so given the above two examples I should be able to compare them ! :D
+
+--
+
+
+if subtract_date(now_day, date_added_day) >= time_diff:
+
+i might use this hold on...
+
+---
+
+
+YES I FINALLY GOT IT TO WORK :D :D :D :D :D

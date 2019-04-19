@@ -32,7 +32,23 @@ def update_source(src):
     articles.Article.insert_from_feed(src.id, feed_articles)
     print("Updated" + src.feed)
 
+def delete_old_articles():
+    while True:
+        with app.app_context():
+            try:
+                articles.Article.delete_from_db()
+                print("success")
+            except:
+                continue
+        time.sleep(60)
+
+
+
+
+
 thread = Thread(target=update_loop)
+thread2 = Thread(target=delete_old_articles)
 thread.start()
+thread2.start()
 
 app.run()

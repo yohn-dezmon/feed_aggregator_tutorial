@@ -48,3 +48,26 @@ class Article(db.Model):
             })
             # the execute line will do a batch insert of all of hte articles in the list! :D
         db.engine.execute(stmt, articles)
+
+    @classmethod
+    def delete_from_db(cls):
+        """ Delete articles that have been in the db for >= x days"""
+        now = datetime.datetime.utcnow()
+        now_day = now.day
+        delt_time_diff = datetime.timedelta(3)
+        time_diff = delt_time_diff.days
+
+        query = Article.query
+        for article in query.all():
+            date_added = article.date_added
+            date_added_day = date_added.day
+            # note to self: here now isn't a specific value, in the argument place or in the retun statement!
+            def subtract_date(now, date_added):
+                return now - date_added
+
+
+
+
+                # here now is referring to the variable defined previously! :D
+            d = Article.__table__.delete().where(subtract_date(now_day, date_added_day) >= time_diff)
+            db.engine.execute(d)

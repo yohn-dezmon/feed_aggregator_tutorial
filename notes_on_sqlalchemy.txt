@@ -1,0 +1,22 @@
+understanding the execute() function:
+
+To understand execute(), we need to understand the Executable class.
+It is a superclass for all "statement" type of objects.
+[select(), delete(), update(), insert(), text()]
+in simple terms, an Executable is an SQL statement in a python method.
+execute() takes the SQL statement and returns query results
+[a resultproxy that wraps a DB-API cursor object to provide easier access
+to row columns]
+
+
+Can I perform a mathematical operation in the where clause of the delete method?
+from stack overflow the guy recommends that you perform the operation in a
+function outside of the query, then put that function in the query :D
+
+def subtract_date(now, date_added):
+          return now - date_added
+
+
+since I defined now before the function, will it know what now is?
+I think it will! b/c when you actually call the function, the input IS the variable
+it just also is named now in the definition of the function :D 

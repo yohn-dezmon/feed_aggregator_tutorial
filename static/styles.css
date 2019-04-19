@@ -8,6 +8,7 @@ a {
 
 h1 {
   color: hotpink;
+  margin: 2em;
 }
 
 h2 {
@@ -54,4 +55,13 @@ h2 {
 
 .body {
   color: snow;
+}
+
+.box_head_left {
+  float:left;
+
+}
+
+.box_head_right {
+  float:right;
 }

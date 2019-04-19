@@ -17,3 +17,59 @@ with that source_id???
 Notes:
 
 app.py connects to the DB.
+
+
+----
+
+04/16/2019
+-How do I delete a source from the DB?
+go into mysql db and ... DELETE FROM source WHERE id = 4;
+
+What I've figured out:
+1. How to have separate divs containing only the articles from a singular news source
+[setting up the __init__.py file route to create a method that inputs this data]
+
+2. Making the CSS such that the boxes show up in a grid pattern.
+
+3. Using jinja2 and python to access the title of the source for the title above the boxes
+it turns out each article is within a <> format in a list, but it can be accessed as an
+element of a list, i.e. list[0].source.title {{ }}...
+
+Things to modify:
+-Make the source insertion be able to handle errors!
+
+-Make a user interface that allows you to delete a source
+
+-Set up crontab to run this automatically daily
+
+-Set up limits to how many new articles can be added, or have the database
+start deleting older files articles! :D
+* the date_added column for articles is db.DateTime, default=datetime.datetime.utcnow)
+https://hartmans.livejournal.com/96592.html
+** When you subtract datetime.datetime.utcnow from date_added the result is in the format
+of datetime.timedelta().
+datetime.timedelta() has the syntax timedelta(days, seconds, microseconds, milliseconds, minutes, hours, weeks)
+
+SO I'M going to make a classmethod function that deletes the articles that have been in the
+database for greater than a certain timedelta(day) time by subtracting now from date_added
+** OK my formula isn't work, I don't know why yet :( )
+
+
+-make the css layout better! :D (titles above each box)
+
+-understand how the articles are getting inserted... b/c I only understand
+how the sources are getting inserted...
+***I forgot that I started to watch the 09 video of the series and
+he made the run.py file that iterates over the inserted sources.
+
+What are environmental variables?
+
+What is echo in bash?
+
+Learn more about bash!
+
+What is the config.py file and how does it work?
+
+what is the .env file and how does it work?
+
+what is the bashrc file and how do I make one?

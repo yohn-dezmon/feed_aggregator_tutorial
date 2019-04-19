@@ -18,13 +18,15 @@ def index_get():
     first_articles = query_over(query, 1)
     second_articles = query_over(query, 2)
     third_articles = query_over(query, 3)
+    fourth_articles = query_over(query, 4)
 
     # when you redeine the query_1 variableon each line, you are constructing a SQL select statement
 
 
     return render_template('index.html', first_articles=first_articles,
                             second_articles=second_articles,
-                            third_articles=third_articles)
+                            third_articles=third_articles,
+                            fourth_articles=fourth_articles)
 
 # <article_id> is a path variable!
 # what ever you name that variable in the path, will be passed to the variable name in the function
