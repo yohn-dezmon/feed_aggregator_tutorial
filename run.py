@@ -5,6 +5,7 @@ import routes
 import feed
 from threading import Thread
 import time
+from datetime import datetime
 
 # with creates a context block so anything here
 # This tells flask that we're working within our app context...
@@ -43,12 +44,12 @@ def delete_old_articles():
         time.sleep(60)
 
 
+update_loop()
+delete_old_articles()
+
+myFile = open('append.txt', 'a')
+myFile.write('\nAccessed on ' + str(datetime.now()))
 
 
 
-thread = Thread(target=update_loop)
-thread2 = Thread(target=delete_old_articles)
-thread.start()
-thread2.start()
-
-app.run()
+app.run(port=5000)

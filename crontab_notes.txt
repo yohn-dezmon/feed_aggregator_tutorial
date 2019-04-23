@@ -52,6 +52,7 @@ $ export EDITOR=vi
 ######
 notes on vi
 
+you have to hit esc to get to these...
 :q (quits the editor)
 :q! (quits and saves nothing)
 :wq (saves and quits)

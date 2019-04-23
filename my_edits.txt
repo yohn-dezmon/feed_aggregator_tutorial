@@ -73,3 +73,65 @@ What is the config.py file and how does it work?
 what is the .env file and how does it work?
 
 what is the bashrc file and how do I make one?
+
+THINGS I'VE UPDATED:
+
+1. Making a function that deletes all articles from the db that are 3 or more days old
+Things I had to get right to make this work:
+
+on run.py:
+articles.Article.delete_from_db() [correct syntax]
+also this had to be within the app context!
+
+on articles.py:
+I had to extract the day from the datetime.datetime.utcnow() object !
+I did that for both the now variable I made and also for the
+date_added variable, which represents the date_added field of the Article
+table. the date_added field is in the datetime.datetime.utcnow() format obvs.
+I think if you subtract two datetime.datetime.utcnow()'s from eachother you end up
+with a datetime.timedelta() object... so taht's what i was using timedelta at first.
+[also ntoe that it's datetime.timedelta() not datetime.datetime.timedelta()]
+but I ended up needing to extract just the day from timedelta()... and you do that by
+timedelta().days
+but that ends up being an integer
+and subtracting two datetime.datetime.utcnow().day objects from eachother is also an integer
+so....
+I think i could replace my time_diff_days with just the integer of the days I want to delete after
+but w/e.
+
+I used a for loop to access each row in the article table, and called each row 'article'
+I accessed the date_added attribute of the Article table by article.date_added
+I assigned that to date_added variable, then got the .day component from datetime...
+
+I made a formula that subtracts the now_day from date_added_day
+
+I made a SQLAlchemy delete query using the syntax
+d = Article.__table__.delete().where(subtract_date(now_day, date_added_day) >= time_diff)
+
+I'm not exactly sure why I had to use the Article.__table__ instead of just Article.delete()
+... maybe I can find out why now..
+
+I included the db.engine.execute(d) within the for loop
+also in the where clause I used the subtract_date function just to simplify what I'd have to write.
+
+
+2. Modifying the index_get() function of __init__.py (within routes) and the corresponding html template
+to display a separate list of articles for each news source.
+
+3. The CSS layout (getting subtitles above, floating the divs)
+
+4. Getting crontab to run run.py:
+[nvm this didn't work :(]
+$ crontab -l
+should return nothing
+$ crontab -e
+press I to edit in VIM
+* * * * * sudo python /Users/HomeFolder/taskqueue_tut/run.py
+ESC
+:wq
+
+
+THINGS TO UPDATE:
+
+1. I want to make use crontab to run, run.py
+2. I want to create a file to clear the cache so I don't have to do it manually!
