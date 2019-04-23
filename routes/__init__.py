@@ -15,10 +15,11 @@ def index_get():
         query = query.order_by(Article.date_added.desc())
         return query.all()
 
+# this should be automated better, to query for available source ids, and for all source ids it should create an articles box...
     first_articles = query_over(query, 1)
     second_articles = query_over(query, 2)
     third_articles = query_over(query, 3)
-    fourth_articles = query_over(query, 4)
+    fourth_articles = query_over(query, 5)
 
     # when you redeine the query_1 variableon each line, you are constructing a SQL select statement
 
