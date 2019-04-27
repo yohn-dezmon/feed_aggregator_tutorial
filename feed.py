@@ -1,4 +1,5 @@
 import feedparser
+import re
 
 import ssl
 if hasattr(ssl, '_create_unverified_context'):
@@ -24,16 +25,26 @@ def get_source(parsed):
 
 def get_articles(parsed):
     """ Return a list of articles in this parsed feed """
-    entries = parsed['entries']
     articles = []
+    # maybe 'entries' isn't always right for some of the rss feeds?
+    entries = parsed['entries']
     # for each entry we're going to append a dictionary!
-    for entry in entries:
-        articles.append({
-            'id': entry['id'],
-            'link': entry['link'],
-            'title': entry['title'],
-            'summary': entry['summary'],
-            'published': entry['published_parsed'],
-
-        })
+    try:
+        for entry in entries:
+            articles.append({
+                'id': entry['id'],
+                'link': entry['link'],
+                'title': entry['title'],
+                'summary': entry['summary'],
+                'published': entry['published_parsed'],
+            })
+    except:
+        print("""there's an error in get_articles
+        -
+        -
+        -
+        -
+        -
+        -
+        """)
     return articles

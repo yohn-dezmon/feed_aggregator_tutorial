@@ -14,6 +14,16 @@ with that source_id???
 
 5. From the form online, how did I input the rss feed into the db?
 
+Things I'm going to add (or have added) (04/25/2019):
+
+1. delete after x days function
+2. CSS to display four boxes
+3. a call to insert the articles after the new source has been added in the
+/sources route...
+4. I want to make use crontab to run, run.py
+5. I want to create a file to clear the cache so I don't have to do it manually!
+6. fix the sources body tags! (Summary/description)
+
 Notes:
 
 app.py connects to the DB.

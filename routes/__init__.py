@@ -4,6 +4,7 @@ from models.articles import Article
 from models.source import Source
 from db import db
 import feed
+import re
 # the index page!
 # this will display all articles... (unread)
 @app.route('/', methods=['GET'])
@@ -18,8 +19,9 @@ def index_get():
 # this should be automated better, to query for available source ids, and for all source ids it should create an articles box...
     first_articles = query_over(query, 1)
     second_articles = query_over(query, 2)
-    third_articles = query_over(query, 3)
-    fourth_articles = query_over(query, 5)
+    third_articles = query_over(query, 11)
+    fourth_articles = query_over(query, 10)
+
 
     # when you redeine the query_1 variableon each line, you are constructing a SQL select statement
 
@@ -58,4 +60,16 @@ def sources_post():
     feed_source = feed.get_source(parsed)
     # put it into the db
     source = Source.insert_from_feed(feed_url, feed_source)
+    query = Source.query
+    for src in query.all():
+        try:
+            update_source(src)
+        except:
+            continue
+    def update_source(src):
+        parsed = feed.parse(src.feed)
+        feed_articles = feed.get_articles(parsed)
+        Article.insert_from_feed(src.id, feed_articles)
+        print("Updated" + src.feed)
+
     return redirect('/sources')

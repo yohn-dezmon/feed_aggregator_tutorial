@@ -1,0 +1,21 @@
+https://pythonspot.com/tokenizing-words-and-sentences-with-nltk/
+
+
+[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:749)
+
+
+solu(?):
+https://stackoverflow.com/questions/38916452/nltk-download-ssl-certificate-verify-failed
+
+
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+
+
+workaround:
+use anaconda virtual env...
+$python3
+import nltk
+nltk.download() # opens window
+
+
+from nltk.tokenize import word_tokenize
