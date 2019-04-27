@@ -1,0 +1,22 @@
+errors in tent_agg
+
+
+Updatedhttps://feeds.feedblitz.com/sethsblog
+there's an error in get_articles
+        -
+        -
+        -
+        -
+        -
+        -
+---
+Updatedhttps://www.reddit.com/r/python/.rss
+/Users/HomeFolder/.venvs/tentagg/lib/python3.6/site-packages/pymysql/cursors.
+py:170: Warning: (1062, "Duplicate entry '8-http://money.cnn.com/2018/09/30/i
+nvesting/stocks-week-ahead-te' for key 'uc_source_guid'")
+  result = self._query(query)
+Updatedhttp://rss.cnn.com/rss/money_news_economy.rss
+
+Ok apparently certain rss feeds just don't work b/c the 4th source id (SED) and the 
+8th source id (CNN money) were both successful! :D when they were successful I had the
+delete function commented out... this probably didn't affect anything 

@@ -1,0 +1,6 @@
+body = article['summary']
+            just_txt = re.sub('<[^<]+?>', '', body)
+
+
+
+^^ put this in insert_from_feed eventually... (for articles)...

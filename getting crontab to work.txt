@@ -1,0 +1,27 @@
+Getting crontab to work... I'm very close in that it's rather simple and I understand 
+how to use it... I'm not sure if the import x statements work 
+
+OK https://stackoverflow.com/questions/48597496/python-script-stops-at-import-statement-when-script-is-run-as-cronjob
+
+cron runs processes with a different environment than that of your terminal! 
+To add python to your shell script:
+export PYTHONPATH=/path/to/script:$PYTHONPATH 
+
+Full path to my file:
+/Users/HomeFolder/taskqueue_tut/run.py
+
+
+Full path to my python (maybe?):
+/Users/HomeFolder/.venvs/tentagg/bin/python3
+
+which python will show you the path of your Python binary... 
+(tentagg) MacBook-Pro:taskqueue_tut HomeFolder$ which Python
+/Users/HomeFolder/.venvs/tentagg/bin/Python
+
+YESS :D 
+
+https://stackoverflow.com/questions/18513562/running-crontab-with-python
+
+^^ This guy recommends listing the full python path in the crontab statement :D 
+(as opposed to just 'python')
+
