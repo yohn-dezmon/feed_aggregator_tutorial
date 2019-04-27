@@ -1,4 +1,4 @@
-#DavyBot's Feed Reader Tutorial
+# DavyBot's Feed Reader Tutorial
 
 This is a content aggregator that was made by following DavyBot's tutorial that can be
 found here: https://www.youtube.com/watch?v=8rvvFNKHUss&list=PLmxT2pVYo5LBcv5nYKTIn-fblphtD_OJO or https://github.com/code-tutorials/python-feedreader
