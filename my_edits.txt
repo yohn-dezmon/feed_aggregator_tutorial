@@ -16,13 +16,13 @@ with that source_id???
 
 Things I'm going to add (or have added) (04/25/2019):
 
-1. delete after x days function
-2. CSS to display four boxes
+1. delete after x days function [check]
+2. CSS to display four boxes [check]
 3. a call to insert the articles after the new source has been added in the
-/sources route...
+/sources route... [check]
 4. I want to make use crontab to run, run.py
 5. I want to create a file to clear the cache so I don't have to do it manually!
-6. fix the sources body tags! (Summary/description)
+6. Fix the body/article['summary'] such that they don't display any html tags! [check!]
 
 Notes:
 

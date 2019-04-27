@@ -17,8 +17,8 @@ h2 {
 
 .left_side_div {
   float:left;
-  width:45%;
-  border = 1px solid yellow;
+  width:49%;
+  border: 0px solid yellow;
 }
 
 .first_articles {
@@ -41,8 +41,8 @@ h2 {
 
 .right_side_div {
   float:right;
-  width:45%;
-  border = 1px solid yellow;
+  width:49%;
+  border: 0px solid yellow;
 }
 
 .second_articles {
@@ -76,9 +76,11 @@ h2 {
 }
 
 .box_head_left {
-  padding-bottom: 1.2em;
+  padding-bottom: .2em;
+  width:100%;
 }
 
 .box_head_right {
-  padding-bottom: 1.2em;
+  padding-bottom: .2em;
+  width:100%;
 }

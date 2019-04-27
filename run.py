@@ -44,11 +44,9 @@ def delete_old_articles():
 
 
 
+update_loop()
+delete_old_articles()
 
 
-thread = Thread(target=update_loop)
-thread2 = Thread(target=delete_old_articles)
-thread.start()
-thread2.start()
 
 app.run()
