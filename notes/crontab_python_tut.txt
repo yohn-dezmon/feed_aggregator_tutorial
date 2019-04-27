@@ -1,3 +1,21 @@
+https://stackabuse.com/scheduling-jobs-with-python-crontab/
+
+$ pip install python-crontab
+
+Within python:
+from crontab import CronTab
+
+cron = CronTab(user='username')
+
+# create a new task
+
+cron.new(command="my command")
+
+# add a comment to the task
+
+cron.new(command="my command", comment='my comment')
+
+
 The tasks in Cron are defined in a crontab which is a text file containing the commands
 to be executed.
 

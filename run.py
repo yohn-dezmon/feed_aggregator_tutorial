@@ -25,7 +25,7 @@ def update_loop():
                     update_source(src)
                 except:
                     continue
-        time.sleep(60*15) # this waits for 15 minutes...
+        time.sleep(60) # this waits for 15 minutes...
 
 def update_source(src):
     parsed = feed.parse(src.feed)
@@ -47,9 +47,5 @@ def delete_old_articles():
 update_loop()
 delete_old_articles()
 
-myFile = open('append.txt', 'a')
-myFile.write('\nAccessed on ' + str(datetime.now()))
 
-
-
-app.run(port=5000)
+app.run()

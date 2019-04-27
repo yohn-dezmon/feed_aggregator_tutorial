@@ -10,6 +10,9 @@
         <h1>Latest News</h1>
 
 
+        <div class="left_side_div">
+
+
         <h1 class="box_head_left"> {{ first_articles[0].source.title }} </h1>
         <div class="first_articles">
         {% for article in first_articles %}
@@ -35,6 +38,37 @@
         </article>
         {% endfor %}
         </div>
+
+              <h1 class="box_head_left"> {{ third_articles[0].source.title }} </h1>
+              <div class="third_articles">
+              {% for article in third_articles %}
+              <article>
+                <h2>
+                  <a href="/read/{{ article.id }}">{{ article.title }}</a>
+                </h2>
+                <div class="source">
+                    From
+                    <a href="{{ article.source.link }}">
+                          {{ article.source.title }}
+                    </a>
+                </div>
+                <div class="added">
+                    {{ article.date_added }}
+
+                </div>
+                <div class="body">
+                  {{ article.body }}
+
+                </div>
+
+              </article>
+              {% endfor %}
+              </div>
+        </div>
+
+        <div class="right_side_div">
+
+
         <h1 class="box_head_right"> {{ second_articles[0].source.title }} </h1>
         <div class="second_articles">
         {% for article in second_articles %}
@@ -61,57 +95,32 @@
         {% endfor %}
         </div>
 
+                    <h1 class="box_head_right"> {{ fourth_articles[0].source.title }} </h1>
+                    <div class="fourth_articles">
+                    {% for article in fourth_articles %}
+                    <article>
+                      <h2>
+                        <a href="/read/{{ article.id }}">{{ article.title }}</a>
+                      </h2>
+                      <div class="source">
+                          From
+                          <a href="{{ article.source.link }}">
+                                {{ article.source.title }}
+                          </a>
+                      </div>
+                      <div class="added">
+                          {{ article.date_added }}
 
+                      </div>
+                      <div class="body">
+                        {{ article.body }}
 
-        <h1 class="box_head_left"> {{ third_articles[0].source.title }} </h1>
-        <div class="third_articles">
-        {% for article in third_articles %}
-        <article>
-          <h2>
-            <a href="/read/{{ article.id }}">{{ article.title }}</a>
-          </h2>
-          <div class="source">
-              From
-              <a href="{{ article.source.link }}">
-                    {{ article.source.title }}
-              </a>
-          </div>
-          <div class="added">
-              {{ article.date_added }}
+                      </div>
 
-          </div>
-          <div class="body">
-            {{ article.body }}
+                    </article>
+                    {% endfor %}
+                    </div>
 
-          </div>
-
-        </article>
-        {% endfor %}
-        </div>
-        <h1 class="box_head_right"> {{ fourth_articles }} </h1>
-        <div class="fourth_articles">
-        {% for article in fourth_articles %}
-        <article>
-          <h2>
-            <a href="/read/{{ article.id }}">{{ article.title }}</a>
-          </h2>
-          <div class="source">
-              From
-              <a href="{{ article.source.link }}">
-                    {{ article.source.title }}
-              </a>
-          </div>
-          <div class="added">
-              {{ article.date_added }}
-
-          </div>
-          <div class="body">
-            {{ article.body }}
-
-          </div>
-
-        </article>
-        {% endfor %}
         </div>
 
 

@@ -1,5 +1,7 @@
 from db import db
 import datetime
+import re
+
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -38,9 +40,11 @@ class Article(db.Model):
         articles = []
         # why are we appending a dictionary to a list?
         for article in feed_articles:
+            body = article['summary']
+            just_txt = re.sub('<[^<]+?>', '', body)
             articles.append({
                 'title': article['title'],
-                'body': article['summary'],
+                'body': just_txt,
                 'link': article['link'],
                 'guid': article['id'],
                 'source_id': source_id,

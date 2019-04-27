@@ -1,0 +1,89 @@
+Hmmm maybe I should put a div around 2 and 4 
+and then another div around 1 and 3
+This would help for making the boxes appear where I want them, but I still don't
+understand how to get the titles on top of the boxes... maybe that would be simplified
+if I didn't have to float everything! 
+
+
+
+- I need to fix the third and fourth source's body tags! :D 
+
+
+hmmm for NASA the summary portion is in a tag called <description>...
+i'm not sure how this is translated in my code...
+
+ok we are accessing article['summary'] for the body column (in articles) b/c
+article in this example is the element of feed_articles which is the PARSED xml/rss
+so I guess when parsed, <description>. gets turned into 'summary'. 
+
+so i need a way to exclude the <p> tags and 
+
+for e in d.entries:
+        if 'summary' in e:
+            summary = e.summary
+        else: 
+            summary = e.description
+
+
+This person appears to have the same issues as me, 
+https://stackoverflow.com/questions/6525783/how-to-clean-all-the-entries-in-a-feedparser-feed
+
+they recommend using NLTK (library). 
+
+why do people use sudo when doing pip installs?
+
+
+
+
+--- OK PROBLEM! :D 
+for some reason, when putting new sources into the DB, the articles aren't being inserted
+into the articles table... 
+
+ok I just realized that the last source I successfully entered was Software Engineering 
+Daily, it would be useful to know if I inserted that before or after the delete method b/c
+I'm thinking the delete method might be the reason why the new RSS feeds aren't pulling
+any of the articles... 
+
+
+How does the workflow go?
+1a. python run.py
+1. Put the source into the /sources route 
+2. From there the .insert_from_feed is called for Sources and the source is input into the DB.
+3. update_loop() in run.py runs b/c of the thread
+4. update_loop() goes to update_source() 
+5. update_source() pulls the feed attribute of the source table (per source) 
+6. .get_articles(parsed) of feed is called, where parse is the parsed feed...
+7. .get_articles() assigns a list of dictionaries to the feed_articles variable pulling
+data from the RSS feed 
+8. 
+
+AHA! very interesting :D 
+When I do run.py the server opens up BUT I don't get the error message until I run the 
+'/' page! :D :D So it seems as if the run.py isn't inserting new articles upon being called
+b/c I get the error when I try to run the '/' route...
+
+
+
+I STILL CANNOT FIGURE OUT WHY NEW RSS FEEDS ARE NOT UPDATING THEIR FUCKING ARTICLES 
+BUT THE INSERT SOURCE FUNCTION WORKS FINE, WTF. 
+
+---------
+
+
+I do not understand what allows the articles to be entered... I deleted a bunch of the articles from the last source, that was previously working, and now when I run the program I was expecting to get those articles back.... to my sadness... none of the articles were 
+entered into the system
+I think this might have to do with the fact that the articles were already entered into 
+the system once and since we have the line:
+stmt = Article.__table__.insert().prefix_with('IGNORE')
+
+# stmt accounts for when SQLAlchemy attempts to reinsert an article from the list
+        # with the same guid and source id [see uniqueconstraint]
+
+so the source id is definitely the same as before... and obviously the guid is the same too 
+because that is pulled from the RSS oh.... ok that makes sense then... maybe something likee that sort of happened before too with the other RSS feeds... I wonder if I delete the source then try again what will happen... let's find out! :D 
+
+The reason I deleted the articles, is b/c I was trying to see if my fix for excluding the html from the body worked... 
+
+hmmm I think my fix... may be preventing the articles from being inserted into the db! 
+yep! it was.. maybe I can alter the input after it gets inserted into the db...
+
