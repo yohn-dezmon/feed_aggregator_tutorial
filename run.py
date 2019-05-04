@@ -14,6 +14,7 @@ from datetime import datetime
 with app.app_context():
     # tell the db to create all the tables we defined.
     db.create_all()
+
 # tell flask to run the application
 
 def update_loop():
@@ -25,7 +26,7 @@ def update_loop():
                     update_source(src)
                 except:
                     continue
-        time.sleep(60) # this waits for 15 minutes...
+        time.sleep(60*15) # this waits for 15 minutes...
 
 def update_source(src):
     parsed = feed.parse(src.feed)
@@ -44,8 +45,9 @@ def delete_old_articles():
         time.sleep(60)
 
 
-update_loop()
-delete_old_articles()
-
+thread = Thread(target=update_loop)
+thread2 = Thread(target=delete_old_articles)
+thread.start()
+thread2.start()
 
 app.run()
