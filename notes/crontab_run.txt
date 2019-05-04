@@ -1,0 +1,1 @@
+* * * * * /Users/HomeFolder/.venvs/tentagg/bin/Python /Users/HomeFolder/taskqueue_tut/run.py

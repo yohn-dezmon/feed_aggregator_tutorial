@@ -1,0 +1,56 @@
+body = article['summary']
+# ^
+#
+just_txt = re.sub('<[^<]+?>', '', body)
+
+this could also be written as...
+
+just_txt = re.sub('<.*>', '', body)
+
+
+
+What the above python code does:
+
+1. matches any < character
+2. [] indicates a set of characters...
+3. ^ matches the start of a string, which is <...
+5. + matches < followed by anything...
+6. ? means only to match ONCE...
+7. > matches the > character
+8. the second parameter just means replace any of the first parameter with a null string character
+9. the last parameter, body, is the source that the regex is running on, re.sub()
+10. returns the result of body after it has processed + replaced the regex stuff.
+
+
+
+. --> matchesany character except new line!
+^ --> matches the start of the sting! :D
+$ --> matches the end of the string! (foo$ matches foo)
+* --> causes the RE to match 0 or more REPETITIONS OF THE PRECEDING RE
+ab* will match a, ab, or a (WTF)
+
++ --> causes the RE to match 0 or more repetitions of the preceding RE
+ab+ will match a followed by any number of b's. it will not must match an 'a'.
+
+? --> will match 0 or 1 repetitions of the preceding RE. ab? will match either a or ab
+
+'\' --> escapes special characters
+
+[] --> [amk] will match a,m, or k.
+
+
+
+
+*,+, and ? are GREEDY. GREEDY >>> they match as much text as possible :D
+
+
+****
+if the RE <.*> is matched against <a> b <c> it will match the entire string not just <a>
+<.*?> will match only <a>
+hmmm
+****
+
+{m}int --> a{6} will match exactly six 'a' characters
+
+thing{m,n} --> matches from m to n things. if m is omitted, it is 0, if n is omitted
+it indicates an infinite upper bound.
